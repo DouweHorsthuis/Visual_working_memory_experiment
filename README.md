@@ -156,7 +156,7 @@ Project Link: [https://github.com/DouweHorsthuis/Visual_working_memory_experimen
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* [Ana Francisco](https://github.com/anafrancisco) - The post doctoral fellow that had the ideas for the experiment
+* [Ana Francisco](https://github.com/anafrancisco) - The post doctoral fellow that conceptualized the whole experiment
 
 
 
