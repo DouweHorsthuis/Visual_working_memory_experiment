@@ -1,0 +1,301 @@
+#picks x amount of letters it needs
+#picks remaining mount of '#'
+#decide if its a yes/no trial from array
+#if yes trial, pick one of the used consonants to repeat.
+#if no trial, pick one of the others
+#codes:
+# 1/2 responses
+# 10 s1 no consonants
+# 11 s2 same no consonants
+# 12 s2 not same no consonants
+# 30 s1 3 consonants
+# 31 s2 same 3 consonants
+# 32 s2 not same 3 consonants
+# 50 s1 5 consonants
+# 51 s2 same 5 consonants
+# 52 s2 not same 5 consonants
+# 70 s1 7 consonants
+# 71 s2 same 7 consonants
+# 72 s2 not same 7 consonants
+
+
+
+int ntrls = 32; # number of trials
+int nprob=8;  #probe trials per condition ntrls/4
+
+array <string> letter_array[22];
+letter_array[1] = "B";
+letter_array[2] = "C";
+letter_array[3] = "D";
+letter_array[4] = "F";
+letter_array[5] = "G";
+letter_array[6] = "J";
+letter_array[7] = "K";
+letter_array[8] = "L";
+letter_array[9] = "M";
+letter_array[10] = "N";
+letter_array[11] = "P";
+letter_array[12] = "Q";
+letter_array[13] = "S";
+letter_array[14] = "T";
+letter_array[15] = "V";
+letter_array[16] = "X";
+letter_array[17] = "Z";
+letter_array[18] = "H";
+letter_array[19] = "R";
+letter_array[20] = "W";
+letter_array[21] = "Y";
+letter_array[22] = "#";
+
+
+
+array <string> my_letters[ntrls];   #used for creating the full strings that should show up
+array <string> my_s2[ntrls];        #used for creating the s2
+array <int> my_code_letters[ntrls]; #used for adding the correct code to the letter
+array <int> my_code_s2[ntrls];      #used for adding the correct code to the s2
+array <int> n_letters[ntrls];       #used this to make sure that there are equal amounts of 0/3/5/7 consonant strings
+array <int> probe_order_1[nprob]; 
+array <int> probe_order_2[nprob]; 
+array <int> probe_order_3[nprob]; 
+array <int> probe_order_4[nprob]; 		#used this to make sure there will be equal amounts of consonants that are in the string vs not in the string 
+array <int> consonant_place[7]; 
+loop
+int start = 1;
+until
+start>2
+begin
+	instructions_1_trial.present();
+	start = start +1;
+end;
+
+loop# this loops makes sure that there are equal amounts of repeat/no repeats trials
+int i = 1; #it also makes sure that for each set of consonants this is devided equally
+until
+i > nprob 
+begin
+	probe_order_1[i] = 1; #adding a same trials
+	probe_order_2[i] = 1; #adding a same trials
+	probe_order_3[i] = 1; #adding a same trials
+	probe_order_4[i] = 1; #adding a same trials
+	i = i + 1;	
+	probe_order_1[i] = 2; #adding a not same trials
+	probe_order_2[i] = 2; #adding a not same trials
+	probe_order_3[i] = 2; #adding a not same trials
+	probe_order_4[i] = 2; #adding a not same trials
+	i = i + 1;
+end;
+probe_order_1.shuffle(); #randomizing the trials, but thanks to the loop before we are sure there are equal amounts of both 
+probe_order_2.shuffle();
+probe_order_3.shuffle(); 
+probe_order_4.shuffle();
+
+loop # this loop makes sure that there are equal amounts of 0/3/5/7 consonant strings in each block
+int i = 1;
+until
+i > ntrls 
+begin
+	n_letters[i] =1; #adding 0 consonants
+	i = i + 1;	
+	n_letters[i] =2; #adding 3 consonants
+	i = i + 1;
+	n_letters[i] =3; #adding 5 consonants
+	i = i + 1;
+	n_letters[i] =4; #adding 7 consonants
+	i = i + 1; 
+end;
+n_letters.shuffle(); #randomizing the trials, but thanks to the loop before we are sure there are equal amounts of both 
+
+loop #this loop will assign all the info to each trial
+int i = 1; int r; int a=1; int b=1; int c=1; int d=1;
+until 
+i > ntrls
+begin
+	consonant_place[1] = 22; #22='#'
+	consonant_place[2] = 22; #22='#'
+	consonant_place[3] = 22; #22='#'	
+	consonant_place[4] = 22; #22='#'
+	consonant_place[5] = 22; #22='#'
+	consonant_place[6] = 22; #22='#'
+	consonant_place[7] = 22; #22='#'
+	if n_letters[i] == 1 then
+		my_code_letters[i] = 10;
+		my_letters[i] = (letter_array[consonant_place[1]]+letter_array[consonant_place[2]]+letter_array[consonant_place[3]]+letter_array[consonant_place[4]]+letter_array[consonant_place[5]]+letter_array[consonant_place[6]]+letter_array[consonant_place[7]]);	
+		r = random(1,21);
+		if probe_order_1[a] == 1 then #same
+			my_s2[i] = letter_array[r]; # will always show a consonant (so it's never the same), only for the first one is this odd
+			my_code_s2[i] = 12;
+			a=a+1;
+		elseif probe_order_1[a] == 2 then  #not same
+			my_s2[i] = letter_array[r]; # will always show a consonant (so it's never the same)
+			my_code_s2[i] = 12;
+			a=a+1;
+		else
+		end;
+	else
+		consonant_place[1] =  random(1,21); #randomly assign one of the consonants 
+		consonant_place[2] =  random(1,21);
+		consonant_place[3] =  random(1,21);
+		if consonant_place[1] == consonant_place[2] then
+			loop
+			consonant_place[2] = random(1,21);
+			until consonant_place[2] != consonant_place[1]
+			begin
+				consonant_place[2] = random(1,21);
+			end;
+		end;
+		if consonant_place[3] == consonant_place[1] || consonant_place[3] == consonant_place[2] then
+			loop
+			consonant_place[3] = random(1,21);
+			until consonant_place[3] != consonant_place[1] && consonant_place[3] != consonant_place[2]
+			begin
+				consonant_place[3] = random(1,21);
+			end;
+		end;
+		if n_letters[i] == 2 then
+			my_code_letters[i] = 30;
+			if probe_order_2[b] == 1 then #same
+				r = random(1,3);
+				my_s2[i] = letter_array[consonant_place[r]]; # going to pick from the first 3 consonants
+				my_code_s2[i] = 31;
+			elseif probe_order_2[b] == 2 then  #not same
+				r = random(1,21); #find a consonant that is not used
+				if r == consonant_place[1] || r == consonant_place[2] || r == consonant_place[3] then #check that it's the same as the used consonants
+					loop #if it's the same
+					r = random(1,21);#choose new r untill
+					until r != consonant_place[1] && r != consonant_place[2] && r != consonant_place[3] #r is not the same as the consonants
+					begin
+						r = random(1,21);
+					end;
+				end;
+				my_s2[i] = letter_array[r]; # r is a new consonant
+				my_code_s2[i] = 32;
+			end;
+			consonant_place.shuffle();
+			my_letters[i] = (letter_array[consonant_place[1]]+letter_array[consonant_place[2]]+letter_array[consonant_place[3]]+letter_array[consonant_place[4]]+letter_array[consonant_place[5]]+letter_array[consonant_place[6]]+letter_array[consonant_place[7]]);		
+			b=b+1;
+		else 
+			consonant_place[4] =  random(1,21);
+			consonant_place[5] =  random(1,21);
+			if consonant_place[4] == consonant_place[1] || consonant_place[4] == consonant_place[2] || consonant_place[4] == consonant_place[3] then
+				loop
+				consonant_place[4] = random(1,21);
+				until consonant_place[4] != consonant_place[1] && consonant_place[4] != consonant_place[2] && consonant_place[4] != consonant_place[3]
+				begin
+					consonant_place[4] = random(1,21);
+				end;
+			end;
+			if consonant_place[5] == consonant_place[1] || consonant_place[5] == consonant_place[2] || consonant_place[5] == consonant_place[3] || consonant_place[5] == consonant_place[4] then
+				loop
+				consonant_place[5] = random(1,21);
+				until consonant_place[5] != consonant_place[1] && consonant_place[5] != consonant_place[2] && consonant_place[5] != consonant_place[3] && consonant_place[5] != consonant_place[4]
+				begin
+					consonant_place[5] = random(1,21);
+				end;
+			end;
+			if n_letters[i] == 3 then
+				my_code_letters[i] = 50;
+				if probe_order_3[c] == 1 then #same
+					r = random(1,5);
+					my_s2[i] = letter_array[consonant_place[r]]; # going to pick from the first 5 consonants
+					my_code_s2[i] = 51;
+				elseif probe_order_3[c] == 2 then  #not same
+					r = random(1,21); #find a consonant that is not used
+					if r == consonant_place[1] || r == consonant_place[2] || r == consonant_place[3] || r == consonant_place[4] || r == consonant_place[5] then #check that it's the same as the used consonants
+						loop #if it's the same
+						r = random(1,21);#choose new r untill
+						until r != consonant_place[1] && r != consonant_place[2] && r != consonant_place[3] && r != consonant_place[4] && r != consonant_place[5] #r is not the same as the consonants
+						begin
+							r = random(1,21);
+						end;
+					end;
+					my_s2[i] = letter_array[r]; # r is a new consonant\
+					my_code_s2[i] = 52;
+				end;
+				consonant_place.shuffle();
+				my_letters[i] = (letter_array[consonant_place[1]]+letter_array[consonant_place[2]]+letter_array[consonant_place[3]]+letter_array[consonant_place[4]]+letter_array[consonant_place[5]]+letter_array[consonant_place[6]]+letter_array[consonant_place[7]]);
+				c=c+1;
+			else 
+				consonant_place[6] =  random(1,21);
+				consonant_place[7] =  random(1,21);
+				if consonant_place[6] == consonant_place[1] || consonant_place[6] == consonant_place[2] || consonant_place[6] == consonant_place[3] || consonant_place[6] == consonant_place[4] || consonant_place[6] == consonant_place[5] then
+					loop
+					consonant_place[6] = random(1,21);
+					until consonant_place[6] != consonant_place[1] && consonant_place[6] != consonant_place[2] && consonant_place[6] != consonant_place[3] && consonant_place[6] != consonant_place[4] && consonant_place[6] != consonant_place[5]
+					begin
+						consonant_place[6] = random(1,21);
+					end;
+				end;
+				if consonant_place[7] == consonant_place[1] || consonant_place[7] == consonant_place[2] || consonant_place[7] == consonant_place[3] || consonant_place[7] == consonant_place[4] || consonant_place[7] == consonant_place[5] || consonant_place[7] == consonant_place[6] then
+					loop
+					consonant_place[7] = random(1,21);
+					until consonant_place[7] != consonant_place[1] && consonant_place[7] != consonant_place[2] && consonant_place[7] != consonant_place[3] && consonant_place[7] != consonant_place[4] && consonant_place[7] != consonant_place[5] && consonant_place[7] != consonant_place[6]
+					begin
+						consonant_place[7] = random(1,21);
+					end;
+				end;
+				if n_letters[i] == 4 then
+					my_code_letters[i] = 70;
+					if probe_order_4[d] == 1 then #same
+					r = random(1,7);
+					my_s2[i] = letter_array[consonant_place[r]]; # going to pick from the first 7 consonants
+					my_code_s2[i] = 71;
+				elseif probe_order_4[d] == 2 then  #not same
+					r = random(1,21); #find a consonant that is not used
+					if r == consonant_place[1] || r == consonant_place[2] || r == consonant_place[3] || r == consonant_place[4] || r == consonant_place[5] || r == consonant_place[6] || r == consonant_place[7] then #check that it's the same as the used consonants
+						loop #if it's the same
+						r = random(1,21);#choose new r untill
+						until r != consonant_place[1] && r != consonant_place[2] && r != consonant_place[3] && r != consonant_place[4] && r != consonant_place[5] && r != consonant_place[6] && r != consonant_place[7] #r is not the same as the consonants
+						begin
+							r = random(1,21);
+						end;
+					end;
+					my_s2[i] = letter_array[r]; # r is a new consonant
+					my_code_s2[i] = 72;
+				end;
+					consonant_place.shuffle();
+					my_letters[i] = (letter_array[consonant_place[1]]+letter_array[consonant_place[2]]+letter_array[consonant_place[3]]+letter_array[consonant_place[4]]+letter_array[consonant_place[5]]+letter_array[consonant_place[6]]+letter_array[consonant_place[7]]);
+					d=d+1;
+				end;
+			end;
+		end;
+	end;
+	i = i+1
+end;
+
+int i=1; int iti;
+loop	 
+until
+	i > ntrls 
+begin		
+	### setting up S1 ###
+	pic_s1.clear(); 
+	s1_txt.set_caption(my_letters[i]);
+	s1_txt.redraw();
+	pic_s1.add_part(s1_txt,0,0);
+	s1_trial.present();
+	s1_event.set_port_code(my_code_letters[i]);
+	#s1_event.set_event_code(string(my_code_letters[i])); 
+	s1_event.set_event_code(my_letters[i]);
+	### S1 is done presenting ISI ###
+	isi_trial.present();
+	### ISI done setting up S2###
+	pic_s2.clear(); 
+	s2_txt.set_caption(my_s2[i]);
+	s2_txt.redraw();
+	pic_s2.add_part(s2_txt,0,0);
+	s2_trial.present();
+	s2_event.set_port_code(my_code_s2[i]);
+	#s2_event.set_event_code(string(my_code_s2[i]));
+	s2_event.set_event_code(my_s2[i]);
+	### S2 is done setting up reponse ###
+	iti = random(7000, 9000);
+	if my_code_s2[i] == 11 || my_code_s2[i] == 31 || my_code_s2[i] == 51 || my_code_s2[i] == 71 then # same
+		iti_trial_same.set_duration(iti);
+		iti_trial_same.present();
+	elseif my_code_s2[i] == 12 || my_code_s2[i] == 32 || my_code_s2[i] == 52 || my_code_s2[i] == 72 then #not same 
+		iti_trial_not_same.set_duration(iti);
+		iti_trial_not_same.present();
+	end;
+	i =i +1; # this is where it goes to the new trial 			
+end;
+end_trial.present();
