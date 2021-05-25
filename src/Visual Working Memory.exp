@@ -46,10 +46,12 @@
 <dxv>8</dxv>
 <efs>
 <filename>C:\Users\dohorsth\Documents\GitHub\Visual_working_memory_experiment\src\Visual Working Memory.sce</filename>
+<filename>C:\Users\dohorsth\Documents\GitHub\Visual_working_memory_experiment\src\Visual Working Memory instructions.sce</filename>
 <filename>C:\Users\dohorsth\Documents\GitHub\Visual_working_memory_experiment\src\Visual Working Memory.pcl</filename>
+<filename>C:\Users\dohorsth\Documents\GitHub\Visual_working_memory_experiment\src\Visual Working Memory instructions.pcl</filename>
 </efs>
 <exclusive_mouse>1</exclusive_mouse>
-<exp_version>1.1</exp_version>
+<exp_version>1.2</exp_version>
 <exparam>
 <man>
 <cfg>
@@ -86,6 +88,9 @@
 <asn>
 <sid>-2</sid>
 </asn>
+<asn>
+<sid>-2</sid>
+</asn>
 </ssa>
 </man>
 </exparam>
@@ -99,6 +104,7 @@
 <ftp>
 <ccc>0</ccc>
 <do_upload>
+<sce>1</sce>
 <sce>1</sce>
 </do_upload>
 <host></host>
@@ -447,7 +453,7 @@
 <require_name_match>0</require_name_match>
 <reschg>1</reschg>
 <rng>1</rng>
-<rts>1</rts>
+<rts>0</rts>
 <sce>
 <idv>
 <device_type>3</device_type>
@@ -469,6 +475,23 @@
 </idv>
 <overrides></overrides>
 <sfn>all_scenarios</sfn>
+</sce>
+<sce>
+<idv>
+<device_type>3</device_type>
+<dx_device_type>19</dx_device_type>
+<ibn>Ctrl</ibn>
+<ibn>Right Ctrl</ibn>
+<idn>Keyboard</idn>
+<index>0</index>
+<index>1</index>
+<label></label>
+<label></label>
+<offset>29</offset>
+<offset>157</offset>
+</idv>
+<overrides></overrides>
+<sfn>C:\Users\dohorsth\Documents\GitHub\Visual_working_memory_experiment\src\Visual Working Memory instructions.sce</sfn>
 </sce>
 <sce>
 <idv>
