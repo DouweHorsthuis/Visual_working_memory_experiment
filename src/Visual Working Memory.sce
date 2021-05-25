@@ -4,8 +4,8 @@ no_logfile = false;
 scenario_type = trials;
 
 default_background_color = 128, 128, 128;
-default_text_color = 255, 0, 255;
-default_font_size = 18;  
+default_text_color = 0,0,0;
+default_font_size = 35;  
 active_buttons = 2;
 button_codes = 1,2;
 write_codes = true; 
@@ -14,21 +14,18 @@ pcl_file = "Visual Working Memory.pcl"; #pcl_file = "Auditory Working Memory_2.p
 begin;
 
 
-text{caption = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot in the set                                                                                 In the set"; font_size = 30; font_color = 200,200,200;  } in_out_text;
+text{caption = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot in the set                                                                                 In the set"; font_size = 30;  } in_out_text;
 picture { text in_out_text; x = 0; y = 0; } in_out;
-#picture { text {font_size=25; font="Arial"; caption ="s1 text"; font_color = 200,200,200;};x=0;y=0;} s1_text;
-picture {
-} default;
-text{caption = "+"; font_size = 30; font_color = 200,200,200;  } cross_text;
+text{caption = "+";} cross_text;
 picture { text cross_text; x = 0; y = 0; } cross;
 
 
 trial{ #this is the first screen to prepare people 
   trial_duration = forever;        	# trial lasts until target
    trial_type = specific_response;  # button is pressed
-   terminator_button = 1;   # left-mouse button
+   terminator_button = 1,2;   # any ctrl
    picture {
-		text {font_size=25; font="Arial"; caption ="PLEASE DOUBLE PRESS THE LEFT Ctrl TO START"; font_color = 200,200,200;};
+		text {caption ="Please double press any Ctrl to start";};
       x=0;y=0;};
 	code = "201 start recording";  
 	port_code = 201; 
@@ -40,9 +37,7 @@ trial{ #this is the s1 trial
 		picture {	
 			text {	
 				caption = "!";
-				font_size = 25;
 				text_align = align_center;
-				font_color = 0,0,0;
 			}s1_txt;
 			x = 256; y = -256;
 		}pic_s1; 
@@ -63,9 +58,7 @@ trial{ #this is the s1 trial
 		picture {	
 			text {	
 				caption = "!";
-				font_size = 25;
 				text_align = align_center;
-				font_color = 0,0,0;
 			}s2_txt;
 			x = 256; y = -256;
 		}pic_s2; 
