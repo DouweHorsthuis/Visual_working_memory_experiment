@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/DouweHorsthuis/Visual_working_memory_experiment/">
-    <img src="images/logo.jpeg" alt="Logo" width="80" height="80">
+    <img src="images/logo.jpeg" alt="Logo" width="160" height="160">
   </a> 
 
 <h3 align="center">Visual Working Memory experiment</h3>
@@ -67,7 +67,7 @@ You need to have any version of the Presentation software.
 
 [Download this Repo](https://github.com/DouweHorsthuis/Visual_working_memory_experiment)
 
-Create 3 folders
+Create 2 folders
 
 Folder 1 - "Presentation Files"  - this folder should contain all the presentation files and Sequences found in the "src" folder
 
@@ -156,7 +156,7 @@ Project Link: [https://github.com/DouweHorsthuis/Visual_working_memory_experimen
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* [Ana Francisco](https://github.com/anafrancisco) - The post doctoral fellow that had the ideas for the experiment
+* [Ana Francisco](https://github.com/anafrancisco) - The post doctoral fellow that conceptualized the whole experiment
 
 
 
