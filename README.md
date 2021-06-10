@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/DouweHorsthuis/Visual_working_memory_experiment/">
-    <img src="images/logo.jpeg" alt="Logo" width="160" height="160">
+    <img src="images/logo.jpeg" alt="Logo" width="80" height="80">
   </a> 
 
 <h3 align="center">Visual Working Memory experiment</h3>
@@ -37,7 +37,7 @@
 3. [Contact](#contact)
 3. [Acknowledgements](#acknowledgements)
 
- 
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -67,7 +67,7 @@ You need to have any version of the Presentation software.
 
 [Download this Repo](https://github.com/DouweHorsthuis/Visual_working_memory_experiment)
 
-Create 2 folders
+Create 3 folders
 
 Folder 1 - "Presentation Files"  - this folder should contain all the presentation files and Sequences found in the "src" folder
 
@@ -92,19 +92,27 @@ Lastly, it is competely random which consonants are chosen, we just make sure th
 
 ### Instructions
 
-As soon as they are ready and verified I'll add the instructions here
+When collecting data you should run the "Visual Working Memory Instruction SCENARIO" first.  The participant is presented with the following instructions:  
+```
+You will see consonants on the screen.  
+Memorize them, as you will be asked if a specific consonant was part of te set you just saw.  
+If you think the consonant was in the set, press the right Ctrl with your right index finger  
+If you think the consonant was not in the set, press the left Ctrl left index finger  
+  
+  
+  
+Please press any Ctrl 2x to start the practice
+```
+After This they will get 32 practice trials (this is the minimum amount of trials presenation needs to create a full scenario).  
+If the participant understands the task there is no need to complete all 32.
 
-<!--These are the instructions people see 1-by-1 before they start: 
-
-<a href="https://github.com/DouweHorsthuis/Active-and-passive-inhibition-experiment-Cued-BOSS/"> ADD HERE THE INSTRUCTIONS ONCE THEY EXIST
-    <img src="images/instruction_1.png" alt="instr_1" width="396" height="220"> -->
-    
 
 
 
 ### Trigger codes
 
-The presentation software sends codes to the EEG system so that the responses and the stimuli can be time locked in the EEG data. The following is an explanation of each trigger code: 
+The presentation software sends codes to the EEG system so that the responses and the stimuli can be time locked in the EEG data. 
+The following is an explanation of each trigger code: 
 ```
 port code 201 = start recording
 port code 200 = pause recording 
@@ -156,7 +164,7 @@ Project Link: [https://github.com/DouweHorsthuis/Visual_working_memory_experimen
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* [Ana Francisco](https://github.com/anafrancisco) - The post doctoral fellow that conceptualized the whole experiment
+* [Ana Francisco](https://github.com/anafrancisco) - The post doctoral fellow that conceptiolized the experiment
 
 
 
