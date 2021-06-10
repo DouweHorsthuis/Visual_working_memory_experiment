@@ -272,10 +272,10 @@ begin
 	s1_txt.set_caption(my_letters[i]);
 	s1_txt.redraw();
 	pic_s1.add_part(s1_txt,0,0);
-	s1_trial.present();
 	s1_event.set_port_code(my_code_letters[i]);
 	#s1_event.set_event_code(string(my_code_letters[i])); 
 	s1_event.set_event_code(my_letters[i]);
+	s1_trial.present();
 	### S1 is done presenting ISI ###
 	isi_trial.present();
 	### ISI done setting up S2###
@@ -283,10 +283,10 @@ begin
 	s2_txt.set_caption(my_s2[i]);
 	s2_txt.redraw();
 	pic_s2.add_part(s2_txt,0,0);
-	s2_trial.present();
 	s2_event.set_port_code(my_code_s2[i]);
 	#s2_event.set_event_code(string(my_code_s2[i]));
 	s2_event.set_event_code(my_s2[i]);
+	s2_trial.present();
 	### S2 is done setting up reponse ###
 	iti = random(7000, 9000);
 	if my_code_s2[i] == 11 || my_code_s2[i] == 31 || my_code_s2[i] == 51 || my_code_s2[i] == 71 then # same
