@@ -14,9 +14,9 @@
 
 <h3 align="center">Visual Working Memory experiment</h3>
 
-<h4 align="center"> This is still a work in progress. Visual Working Memory experiment for Presentation® NeuroBehavioral Systems, This task is created for the Cystinosis experiment battery (2021)</h4>
+<h4 align="center"> Visual Working Memory experiment for Presentation® NeuroBehavioral Systems, This task is created for the Cystinosis experiment battery (2021)</h4>
 
-## This paradigm is still a work in progress
+## This paradigm works, but was scrapped from the study due to time concerns. This means that this paradigm never got it's timing checked and there is not eyetracking added.
 
 **Table of Contents**
   
